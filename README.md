@@ -3,7 +3,7 @@
 ## About
 
 Game is roughly based on [Dark Blue](http://www.lessmilk.com/games/10) by Thomas
-Palef. I chose this game because it is both entertaining and minimalist, and
+Palef. This game is choosed because it is both entertaining and minimalist, and
 because it can be built without too much code. It looks like this:
 
 ![Platformer](http://eloquentjavascript.net/img/darkblue.png)
