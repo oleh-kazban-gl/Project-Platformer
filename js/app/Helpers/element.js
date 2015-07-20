@@ -4,11 +4,16 @@
  * see: https://github.com/olehkazban/Project-Platformer for details
  */
 
-//var GAME_LEVELS = require('./app/Levels/Levels');
-//var DOMDisplay = require('./app/Engine/DOMDisplay/EngineDOM');
-//
-//runGame(GAME_LEVELS, DOMDisplay);
+define(function(){
+  'use strict';
 
-'use strict';
+  function element(name, className) {
+    var elt = document.createElement(name);
+    if (className) elt.className = className;
 
-requirejs(['app/loader']);
+    return elt;
+  }
+
+  return element;
+});
+

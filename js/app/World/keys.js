@@ -4,11 +4,13 @@
  * see: https://github.com/olehkazban/Project-Platformer for details
  */
 
-//var GAME_LEVELS = require('./app/Levels/Levels');
-//var DOMDisplay = require('./app/Engine/DOMDisplay/EngineDOM');
-//
-//runGame(GAME_LEVELS, DOMDisplay);
+define(function(){
+  'use strict';
 
-'use strict';
+  var arrowCodes = {37: "left", 38: "up", 39: "right"};
 
-requirejs(['app/loader']);
+  return arrowCodes;
+});
+
+
+
