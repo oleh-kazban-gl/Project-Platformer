@@ -1,14 +1,13 @@
-var utils = require('./utils'),
-  expect = require('expect.js'),
-  sinon = require('sinon');
+var expect = require('expect.js'),
+  sinon = require('sinon'),
+  levels = require('./../js/app/Levels/Levels')
+  ;
 
-describe('Utils', function () {
+describe('Platformer', function () {
 
-  describe('#sort()', function () {
+  describe('Levels', function () {
     it('Should sort given array of numbers and pass in ascending ordering (with ascending comparator: a < b)', function () {
-      expect(utils.deepEqual(utils.sort([2, 1, 1, 0], function (a, b) {
-        return a < b;
-      }), [0, 1, 1, 2])).to.equal(true);
+      expect().to.equal(true);
     });
   });
 
