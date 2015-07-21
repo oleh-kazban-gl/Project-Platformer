@@ -8,7 +8,7 @@ define(function(require){
   'use strict';
 
   var runLevel = require('./runLevel');
-  var Level = require('./../World/Level');
+  var Level = require('../World/Level');
 
   function runGame(plans, Display) {
     var lives = 3;

@@ -39,7 +39,7 @@ define(function(require){
     }
 
     this.player = this.actors.filter(function (actor) {
-      return actor.type == "player";
+      return actor.type == 'player';
     })[0];
     this.status = this.finishDelay = null;
   }

@@ -7,9 +7,9 @@
 define(function (require) {
   'use strict';
 
-  var Player = require('./../Entity/Player');
-  var Coin = require('./../Entity/Coin');
-  var Lava = require('./../Entity/Lava');
+  var Player = require('../Entity/Player');
+  var Coin = require('../Entity/Coin');
+  var Lava = require('../Entity/Lava');
 
   var actorChars = {
     '@': Player,

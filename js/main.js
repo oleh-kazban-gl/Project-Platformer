@@ -4,11 +4,6 @@
  * see: https://github.com/olehkazban/Project-Platformer for details
  */
 
-//var GAME_LEVELS = require('./app/Levels/Levels');
-//var DOMDisplay = require('./app/Engine/DOMDisplay/EngineDOM');
-//
-//runGame(GAME_LEVELS, DOMDisplay);
-
 'use strict';
 
 requirejs(['app/loader']);

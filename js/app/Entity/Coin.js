@@ -7,7 +7,7 @@
 define(function (require) {
   'use strict';
 
-  var Vector = require('./../World/Vector');
+  var Vector = require('../World/Vector');
 
   var wobbleSpeed = 8;
   var wobbleDist = 0.07;

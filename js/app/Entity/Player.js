@@ -7,7 +7,7 @@
 define(function (require) {
   'use strict';
 
-  var Vector = require('./../World/Vector');
+  var Vector = require('../World/Vector');
 
   var gravity = 30;
   var jumpSpeed = 17;

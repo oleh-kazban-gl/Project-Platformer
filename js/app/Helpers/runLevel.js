@@ -9,7 +9,7 @@ define(function (require) {
 
   var runAnimation = require('./runAnimation');
   var trackKeys = require('./trackKeys');
-  var arrowCodes = require('./../World/keys');
+  var arrowCodes = require('../World/keys');
 
   function runLevel(level, Display, andThen) {
     var display = new Display(document.body, level);
