@@ -5,15 +5,95 @@ var expect = require('expect.js'),
   sinon = require('sinon');
 
 //Levels
-var levels = require('../js/app/Levels/Levels');
+var levels = require('../js/app/Levels/Levels'); //tested
 
 //Entities
 var player = require('../js/app/Entity/Player'),
   coin = require('../js/app/Entity/Coin'),
-  lava = require('../js/app/Entity/Lava'),
-  actorChars = require('../js/app/World/actorChars');
+  lava = require('../js/app/Entity/Lava');
+
+//Engine
+var engine = require('../js/app/Engine/DOMDisplay/EngineDOM');
+
+//Helpers
+var element = require('../js/app/Helpers/element'),
+  runAnimation = require('../js/app/Helpers/runAnimation'),
+  runGame = require('../js/app/Helpers/runGame'),
+  runLevel = require('../js/app/Helpers/runLevel'),
+  trackKeys = require('../js/app/Helpers/trackKeys');
+
+//World
+var actorChars = require('../js/app/World/actorChars'),
+  keys = require('../js/app/World/keys'),
+  level = require('../js/app/World/level'),
+  vector = require('../js/app/World/vector');
+
+//Loader
+var loader = require('../js/app/loader');
 
 describe('Platformer', function () {
+
+  describe('Loader', function() {
+
+  });
+
+  describe('World', function() {
+    describe('actorChars', function() {
+
+    });
+
+    describe('keys', function() {
+
+    });
+
+    describe('level', function() {
+
+    });
+
+    describe('vector', function() {
+
+    });
+  });
+
+  describe('Helpers', function() {
+    describe('element', function() {
+
+    });
+
+    describe('runAnimation', function() {
+
+    });
+
+    describe('runGame', function() {
+
+    });
+
+    describe('runLevel', function() {
+
+    });
+
+    describe('trackKeys', function() {
+
+    });
+  });
+
+  describe('Engine', function() {
+
+  });
+
+  describe('Entities', function() {
+    describe('Coin', function() {
+
+    });
+
+    describe('Lava', function() {
+
+    });
+
+    describe('Player', function() {
+
+    });
+  });
 
   describe('Levels', function () {
     it('Levels should be an Array', function () {
@@ -109,7 +189,6 @@ describe('Platformer', function () {
 
       expect(correct.indexOf(false)).to.equal(-1);
     });
-
   });
 
 });
