@@ -1,0 +1,25 @@
+{
+  "name": "Platformer",
+  "version": "0.0.1",
+  "description": "Game, roughly based on Dark Blue by Thomas Palef",
+  "main": "src/js/main.js",
+  "scripts": {
+    "test": "mocha tests/test.js",
+    "test-in-browser": "beefy tests/test.js"
+  },
+  "keywords": [
+    "game",
+    "platformer",
+    "requireJS",
+    "tdd",
+    "learn",
+    "study"
+  ],
+  "author": "olehkazban",
+  "license": "MIT",
+  "devDependencies": {
+    "expect.js": "^0.3.1",
+    "mocha": "^2.2.5",
+    "sinon": "^1.15.4"
+  }
+}
