@@ -7,7 +7,7 @@
 define(function (require) {
   'use strict';
 
-  var element = require('./../../Helpers/element');
+  var element = require('../../Helpers/element');
 
   var scale = 20;
 
