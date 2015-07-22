@@ -7,9 +7,13 @@
 define(function(){
   'use strict';
 
-  var arrowCodes = {37: 'left', 38: 'up', 39: 'right'};
+  var keys = {
+    37: 'left',
+    38: 'up',
+    39: 'right'
+  };
 
-  return arrowCodes;
+  return keys;
 });
 
 

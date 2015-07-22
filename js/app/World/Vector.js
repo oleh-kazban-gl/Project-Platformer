@@ -4,12 +4,16 @@
  * see: https://github.com/olehkazban/Project-Platformer for details
  */
 
-define(function(){
+define(function () {
   'use strict';
 
   function Vector(x, y) {
-    this.x = x;
-    this.y = y;
+    if (x != null || y != null || x != undefined || y != undefined) {
+      this.x = x;
+      this.y = y;
+    } else {
+      throw new Error('Unexpected Vector constructor parameters');
+    }
   }
 
   Vector.prototype.plus = function (other) {
