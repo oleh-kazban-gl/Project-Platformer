@@ -15,7 +15,7 @@
     "learn",
     "study"
   ],
-  "author": "olehkazban",
+  "author": "Oleh Kazban",
   "license": "MIT",
   "devDependencies": {
     "expect.js": "^0.3.1",
