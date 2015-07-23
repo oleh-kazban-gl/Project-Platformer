@@ -48,7 +48,7 @@ define(function (require) {
         if (andThen) {
           andThen(level.status);
         }
-        
+
         return false;
       }
     }

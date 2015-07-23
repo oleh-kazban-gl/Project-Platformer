@@ -26,6 +26,6 @@ direct control of the onscreen avatar.
 The game consists of a fixed background, laid out like a grid, with the moving
 elements overlaid on that background. Each field on the grid is either empty,
 solid, or lava. The moving elements are the player, coins, and certain pieces
-of lava. Unlike the artificial life simulation from Chapter 7, the positions
-of these elements are not constrained to the grid—their coordinates may be
+of lava. Unlike the artificial life simulation, the positions
+of these elements are not constrained to the grid - their coordinates may be
 fractional, allowing smooth motion.
