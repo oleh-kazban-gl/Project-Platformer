@@ -127,6 +127,9 @@ describe('Platformer', function () {
     });
 
     describe('vector', function () {
+      var testVector1 = new vector(1, 2);
+      var testVector2 = new vector(1, 2);
+
       it('Should contain method \'plus\'', function () {
         expect(vector.prototype.plus).to.be.a('function');
       });
@@ -164,8 +167,6 @@ describe('Platformer', function () {
       });
 
       it('Should return an new instance of \'Vector\' as result of method \'plus\'', function () {
-        var testVector1 = new vector(1, 1);
-        var testVector2 = new vector(1, 1);
 
         var resultVector = testVector1.plus(testVector2);
 
@@ -173,16 +174,12 @@ describe('Platformer', function () {
       });
 
       it('Should return an new instance of \'Vector\' with expected coordinates as result of method \'plus\'', function () {
-        var testVector1 = new vector(1, 2);
-        var testVector2 = new vector(1, 2);
-
         var resultVector = testVector1.plus(testVector2);
 
         expect(resultVector).to.eql({x: 2, y: 4});
       });
 
       it('Should return an new instance of \'Vector\' as result of method \'times\'', function () {
-        var testVector1 = new vector(1, 2);
 
         var resultVector = testVector1.times(2);
 
@@ -190,11 +187,21 @@ describe('Platformer', function () {
       });
 
       it('Should return an new instance of \'Vector\' with expected coordinates as result of method \'times\'', function () {
-        var testVector1 = new vector(1, 2);
-
         var resultVector = testVector1.times(2);
 
         expect(resultVector).to.eql({x: 2, y: 4});
+      });
+
+      it('Should return a \'Vector\' Object (test using constuctor name)', function(){
+        var resultVector = testVector1.times(2);
+
+        expect(resultVector.constructor.name).to.equal('Vector');
+      });
+
+      it('Should return a \'Vector\' Object (test using assert \'a\')', function(){
+        var resultVector = testVector1.times(2);
+
+        expect(resultVector).to.be.a(vector);
       });
     });
   });  //tested
@@ -284,11 +291,26 @@ describe('Platformer', function () {
 
         expect(testLava.pos).to.not.eql(testActedLava.pos);
       });
-    });
+    }); // tested
 
     describe('Player', function () {
       var testVector = new vector(1, 1);
       var testPerson = new player(testVector);
+      var testLevelPlan = levels[0];
+      var testLevel = new level(testLevelPlan);
+      var testStep = 0.2;
+
+      var unregister = function() {
+        removeEventListener('keydown', handler);
+        removeEventListener('keyup', handler);
+      };
+
+      var actorKeys = {
+        'unregister': unregister,
+        'up': true,
+        'right': true,
+        'left': true
+      };
 
       var startPos = 'position';
 
@@ -325,10 +347,14 @@ describe('Platformer', function () {
       });
 
       it('Should throw an Error if constructor parameter is not Vector', function () {
-
         expect(function () {
           var testPerson = new player(startPos);
         }).to.throwError();
+      });
+
+      it('', function () {
+        console.log(testPerson);
+
       });
     });
   });
