@@ -4,8 +4,7 @@
   "description": "Game, roughly based on Dark Blue by Thomas Palef",
   "main": "src/js/main.js",
   "scripts": {
-    "test": "mocha tests/test.js",
-    "test-in-browser": "beefy tests/test.js"
+    "test": "mocha tests/test.js"
   },
   "keywords": [
     "game",

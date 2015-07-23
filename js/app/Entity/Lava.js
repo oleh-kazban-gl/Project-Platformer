@@ -10,16 +10,20 @@ define(function (require) {
   var Vector = require('../World/Vector');
 
   function Lava(pos, ch) {
-    this.pos = pos;
-    this.size = new Vector(1, 1);
+    if (pos.constructor.name === 'Vector' && ch === '=' || ch === '|' || ch === 'v') {
+      this.pos = pos;
+      this.size = new Vector(1, 1);
 
-    if (ch == '=') {
-      this.speed = new Vector(2, 0);
-    } else if (ch == '|') {
-      this.speed = new Vector(0, 2);
-    } else if (ch == 'v') {
-      this.speed = new Vector(0, 3);
-      this.repeatPos = pos;
+      if (ch == '=') {
+        this.speed = new Vector(2, 0);
+      } else if (ch == '|') {
+        this.speed = new Vector(0, 2);
+      } else if (ch == 'v') {
+        this.speed = new Vector(0, 3);
+        this.repeatPos = pos;
+      }
+    } else {
+      throw new Error('Invalid constructor parameters');
     }
   }
 
@@ -28,12 +32,13 @@ define(function (require) {
   Lava.prototype.act = function (step, level) {
     var newPos = this.pos.plus(this.speed.times(step));
 
-    if (!level.obstacleAt(newPos, this.size))
+    if (!level.obstacleAt(newPos, this.size)) {
       this.pos = newPos;
-    else if (this.repeatPos)
+    } else if (this.repeatPos) {
       this.pos = this.repeatPos;
-    else
+    } else {
       this.speed = this.speed.times(-1);
+    }
   };
 
   return Lava;

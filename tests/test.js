@@ -5,7 +5,7 @@ var expect = require('expect.js'),
   sinon = require('sinon');
 
 //Levels
-var levels = require('../js/app/Levels/Levels'); //tested
+var levels = require('../js/app/Levels/Levels');
 
 //Entities
 var player = require('../js/app/Entity/Player'),
@@ -36,7 +36,6 @@ describe('Platformer', function () {
   after(function () {
 
   });
-
 
   describe('World', function () {
     describe('actorChars', function () {
@@ -174,17 +173,31 @@ describe('Platformer', function () {
       });
 
       it('Should return an new instance of \'Vector\' with expected coordinates as result of method \'plus\'', function () {
-        var testVector1 = new vector(1, 1);
-        var testVector2 = new vector(1, 1);
+        var testVector1 = new vector(1, 2);
+        var testVector2 = new vector(1, 2);
 
         var resultVector = testVector1.plus(testVector2);
 
-        expect(resultVector).to.eql({x: 2, y: 2});
+        expect(resultVector).to.eql({x: 2, y: 4});
       });
 
+      it('Should return an new instance of \'Vector\' as result of method \'times\'', function () {
+        var testVector1 = new vector(1, 2);
 
+        var resultVector = testVector1.times(2);
+
+        expect(resultVector instanceof vector).to.equal(true);
+      });
+
+      it('Should return an new instance of \'Vector\' with expected coordinates as result of method \'times\'', function () {
+        var testVector1 = new vector(1, 2);
+
+        var resultVector = testVector1.times(2);
+
+        expect(resultVector).to.eql({x: 2, y: 4});
+      });
     });
-  });
+  });  //tested
 
   describe('Helpers', function () {
     describe('element', function () {
@@ -214,15 +227,109 @@ describe('Platformer', function () {
 
   describe('Entities', function () {
     describe('Coin', function () {
+      var testPos = new vector(1, 1);
+      var testCoin = new coin(testPos);
+      var testStep = 0.2;
 
-    });
+      it('Should return Object', function () {
+        expect(testCoin).to.be.a('object');
+      });
+
+      it('Should have \'type\' = coin', function () {
+        expect(testCoin.type).to.equal('coin');
+      });
+
+      it('Should have method \'act\'', function () {
+        expect(testCoin.act).to.be.a('function');
+      });
+
+      it('Should modify \'position\' after using \'act\' method', function () {
+        var testActCoin = new coin(testPos);
+        testActCoin.act(testStep);
+
+        expect(testCoin.pos).to.not.eql(testActCoin.pos);
+      });
+
+      it('Should modify \'wobble\' after using \'act\' method', function () {
+        var testActCoin = new coin(testPos);
+        testActCoin.act(testStep);
+
+        expect(testCoin.wobble).to.not.eql(testActCoin.wobble);
+      })
+    }); // tested
 
     describe('Lava', function () {
+      var lavaChar = ['=', '|', 'v'];
+      var testPos = new vector(1, 1);
+      var testLava = new lava(testPos, lavaChar[1]);
+      var testLevelPlan = levels[0];
+      var testLevel = new level(testLevelPlan);
+      var testStep = 0.2;
 
+      it('Should return Object', function () {
+        expect(testLava).to.be.a('object');
+      });
+
+      it('Should have \'type\' = lava', function () {
+        expect(testLava.type).to.equal('lava')
+      });
+
+      it('Should have method \'act\'', function () {
+        expect(testLava.act).to.be.a('function')
+      });
+
+      it('Should change \'position\' after using \'act\' method', function () {
+        var testActedLava = new lava(testPos, lavaChar[1]);
+        testActedLava.act(testStep, testLevel);
+
+        expect(testLava.pos).to.not.eql(testActedLava.pos);
+      });
     });
 
     describe('Player', function () {
+      var testVector = new vector(1, 1);
+      var testPerson = new player(testVector);
 
+      var startPos = 'position';
+
+      it('Should return Object', function () {
+        expect(testPerson).to.be.a('object')
+      });
+
+      it('Should have property \'pos\'', function () {
+        expect(testPerson.pos).to.be.a('object');
+      });
+
+      it('Should have property \'size\'', function () {
+        expect(testPerson.size).to.be.a('object');
+      });
+
+      it('Should have property \'speed\'', function () {
+        expect(testPerson.size).to.be.a('object');
+      });
+
+      it('Should have \'type\' = player', function () {
+        expect(testPerson.type).to.equal('player')
+      });
+
+      it('Should have method \'act\'', function () {
+        expect(testPerson.act).to.be.a('function')
+      });
+
+      it('Should have method \'moveX\'', function () {
+        expect(testPerson.moveX).to.be.a('function')
+      });
+
+      it('Should have method \'moveY\'', function () {
+        expect(testPerson.moveY).to.be.a('function')
+      });
+
+      it('Should throw an Error if constructor parameter is not Vector', function () {
+
+        expect(function () {
+          var testPerson = new player(startPos);
+        }).to.throwError();
+      });
     });
   });
 
@@ -346,6 +453,6 @@ describe('Platformer', function () {
 
       expect(correct.indexOf(false)).to.equal(-1);
     });
-  });
+  });  //tested
 
 });

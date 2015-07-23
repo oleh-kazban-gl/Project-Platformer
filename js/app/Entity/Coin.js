@@ -13,9 +13,13 @@ define(function (require) {
   var wobbleDist = 0.07;
 
   function Coin(pos) {
-    this.basePos = this.pos = pos.plus(new Vector(0.2, 0.1));
-    this.size = new Vector(0.6, 0.6);
-    this.wobble = Math.random() * Math.PI * 2;
+    if (pos.constructor.name === 'Vector') {
+      this.basePos = this.pos = pos.plus(new Vector(0.2, 0.1));
+      this.size = new Vector(0.6, 0.6);
+      this.wobble = Math.random() * Math.PI * 2;
+    } else {
+      throw new Error('Invalid constructor parameters');
+    }
   }
 
   Coin.prototype.type = 'coin';

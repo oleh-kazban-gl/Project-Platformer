@@ -11,13 +11,13 @@ define(function(){
     var pressed = Object.create(null);
 
     function handler(event) {
-
       if (codes.hasOwnProperty(event.keyCode)) {
         var state = event.type == 'keydown';
         pressed[codes[event.keyCode]] = state;
         event.preventDefault();
       }
     }
+
     addEventListener('keydown', handler);
     addEventListener('keyup', handler);
 

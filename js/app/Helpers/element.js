@@ -4,12 +4,15 @@
  * see: https://github.com/olehkazban/Project-Platformer for details
  */
 
-define(function(){
+define(function () {
   'use strict';
 
   function element(name, className) {
     var elt = document.createElement(name);
-    if (className) elt.className = className;
+
+    if (className) {
+      elt.className = className;
+    }
 
     return elt;
   }

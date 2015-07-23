@@ -19,7 +19,6 @@ define(function (require) {
       if (event.keyCode == 27) {
         if (running == 'no') {
           running = 'yes';
-
           runAnimation(animation);
         } else if (running == 'pausing') {
           running = 'yes';
