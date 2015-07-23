@@ -192,16 +192,22 @@ describe('Platformer', function () {
         expect(resultVector).to.eql({x: 2, y: 4});
       });
 
-      it('Should return a \'Vector\' Object (test using constuctor name)', function(){
+      it('Should return a \'Vector\' Object (test using constuctor name)', function () {
         var resultVector = testVector1.times(2);
 
         expect(resultVector.constructor.name).to.equal('Vector');
       });
 
-      it('Should return a \'Vector\' Object (test using assert \'a\')', function(){
+      it('Should return a \'Vector\' Object (test using assert \'a\')', function () {
         var resultVector = testVector1.times(2);
 
         expect(resultVector).to.be.a(vector);
+      });
+
+      it('Should return a Object (test using assert \'an\')', function () {
+        var resultVector = testVector1.times(2);
+
+        expect(resultVector).to.be.an('object');
       });
     });
   });  //tested
@@ -263,7 +269,7 @@ describe('Platformer', function () {
 
         expect(testCoin.wobble).to.not.eql(testActCoin.wobble);
       })
-    }); // tested
+    });
 
     describe('Lava', function () {
       var lavaChar = ['=', '|', 'v'];
@@ -291,21 +297,39 @@ describe('Platformer', function () {
 
         expect(testLava.pos).to.not.eql(testActedLava.pos);
       });
-    }); // tested
+    });
 
     describe('Player', function () {
       var testVector = new vector(1, 1);
       var testPerson = new player(testVector);
       var testLevelPlan = levels[0];
       var testLevel = new level(testLevelPlan);
-      var testStep = 0.2;
+      var testStep = 2;
 
-      var unregister = function() {
+      var unregister = function () {
         removeEventListener('keydown', handler);
         removeEventListener('keyup', handler);
       };
 
-      var actorKeys = {
+      var actorKeysLeft = {
+        'unregister': unregister,
+        'up': false,
+        'right': false,
+        'left': true
+      };
+      var actorKeysRight = {
+        'unregister': unregister,
+        'up': false,
+        'right': true,
+        'left': false
+      };
+      var actorKeysUp = {
+        'unregister': unregister,
+        'up': true,
+        'right': false,
+        'left': false
+      };
+      var actorKeysMove = {
         'unregister': unregister,
         'up': true,
         'right': true,
@@ -352,12 +376,52 @@ describe('Platformer', function () {
         }).to.throwError();
       });
 
-      it('', function () {
-        console.log(testPerson);
+      it('[TEST] Should change \'position\' in corresponding direction as result of \'act\' method', function () {
+        testPerson.act(testStep, testLevel, actorKeysLeft);
+        expect(testPerson.pos).to.eql({x: 1, y: 2.5});
+      });
 
+      it('[TEST] Should change \'position\' in corresponding direction as result of \'act\' method', function () {
+        testPerson.act(testStep, testLevel, actorKeysRight);
+        expect(testPerson.pos).to.eql({x: 15, y: 4.5});
+      });
+
+      it('[TEST] Should change \'position\' in corresponding direction as result of \'act\' method', function () {
+        testPerson.act(testStep, testLevel, actorKeysUp);
+        expect(testPerson.pos).to.eql({x: 15, y: 6.5});
+      });
+
+      it('[TEST] Should change \'speed\' in corresponding direction as result of \'act\' method', function () {
+        testPerson.act(testStep, testLevel, actorKeysLeft);
+        expect(testPerson.speed).to.eql({x: -7, y: 0});
+      });
+
+      it('[TEST] Should change \'speed\' in corresponding direction as result of \'act\' method', function () {
+        testPerson.act(testStep, testLevel, actorKeysRight);
+        expect(testPerson.speed).to.eql({x: 7, y: 0});
+      });
+
+      it('[TEST] Should change \'speed\' in corresponding direction as result of \'act\' method', function () {
+        testPerson.act(testStep, testLevel, actorKeysUp);
+        expect(testPerson.speed).to.eql({x: 0, y: -17});
+      });
+
+      it('[TEST] Should change \'size\' in corresponding direction as result of \'act\' method', function () {
+        testPerson.act(testStep, testLevel, actorKeysUp);
+        expect(testPerson.size).to.eql({x: 0.8, y: -12.5});
+      });
+
+      it('[TEST] Should change \'size\' in corresponding direction as result of \'act\' method', function () {
+        testPerson.act(testStep, testLevel, actorKeysUp);
+        expect(testPerson.size).to.eql({x: 0.8, y: -14.5});
+      });
+
+      it('[TEST] Should change \'size\' in corresponding direction as result of \'act\' method', function () {
+        testPerson.act(testStep, testLevel, actorKeysUp);
+        expect(testPerson.size).to.eql({x: 0.8, y: -16.5});
       });
     });
-  });
+  });  //tested
 
   describe('Levels', function () {
     it('Levels should be an Array', function () {
