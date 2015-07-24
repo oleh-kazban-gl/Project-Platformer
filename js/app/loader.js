@@ -10,6 +10,7 @@ define(function(require){
   var runGame = require('./Helpers/runGame');
   var GAME_LEVELS = require('./Levels/Levels');
   var DOMDisplay = require('./Engine/DOMDisplay/EngineDOM');
+  var CanvasDisplay = require('./Engine/CanvasDisplay/EngineCanvas');
 
-  return runGame(GAME_LEVELS, DOMDisplay);
+  return runGame(GAME_LEVELS, CanvasDisplay);
 });
