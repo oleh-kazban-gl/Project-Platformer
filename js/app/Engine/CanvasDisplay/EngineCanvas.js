@@ -4,7 +4,7 @@
  * see: https://github.com/olehkazban/Project-Platformer for details
  */
 
-define(function (require) {
+define(function () {
     'use strict';
 
     var scale = 20;
