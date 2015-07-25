@@ -13,76 +13,40 @@ define(function (require) {
 
     var runGame = {
         run: function (plans, Display) {
+
             soundEngine.soundInit();
 
             function startLevel(n) {
                 var level = new Level(plans[n]);
+
                 runGame.coins = level.coins;
                 runGame.level = level;
+                level.levelId = n;
 
                 runLevel(level, Display, function (status) {
-                        if (status === 'lost' && runGame.lives > 0) {
-                            runGame.lives -= 1; // Player died, for respawn spent 1 life
-                            console.log('Level: #' + n + ', lives: ' + runGame.lives);
+                    if (status === 'lost' && runGame.lives > 0) {
+                        runGame.lives -= 1; // Player died, for respawn spent 1 life
+                        console.log('Level: #' + n + ', lives: ' + runGame.lives);
 
-                            startLevel(n);
-                        } else if (runGame.lives <= 0) {
-                            soundEngine.soundPlay('gameOver');
+                        startLevel(n);
+                    } else if (runGame.lives <= 0) {
+                        soundEngine.soundPlay('gameOver');
+                        runGame.lives = 3;
 
-                            console.log('GAME OVER: You spent all your lives, you loose!');
-                            console.log('Press SPACE to restart');
+                        startLevel(0);
+                    } else if (n < plans.length - 1) {
+                        runGame.lives += 1; // Reward for finishing level
+                        n += 1;
 
-                            var div = document.createElement('div');
-                            div.style.width = 300 + 'px';
-                            div.style.height = 200 + 'px';
+                        soundEngine.soundPlay('nextLevel');
 
-                            div.style.background = 'red';
-                            div.style.borderRadius = 20 + 'px';
-                            div.style.color = 'white';
+                        console.log('Level: #' + n + ', lives: ' + runGame.lives);
 
-                            div.style.position = 'absolute';
-                            div.style.left = ((screen.width / 2) - (div.width / 2)) + "px";
-                            div.style.top = ((screen.height / 2) - (div.height / 2)) + "px";
-
-                            var center = document.createElement('center');
-                            var divText = document.createTextNode('GAME OVER. PRESS SPACE TO RESTART.');
-                            center.appendChild(divText);
-                            div.appendChild(center);
-                            document.body.appendChild(div);
-
-                            addEventListener('keydown', function (event) {
-                                if (event.keyCode === 32) {
-                                    var divs = [];
-
-                                    for (var count = 0; count < document.body.childNodes.length; count++) {
-                                        var node = document.body.childNodes[count];
-                                        if (node.nodeType === document.ELEMENT_NODE && node.tagName === 'DIV') {
-                                            divs.push(node);
-                                        }
-                                    }
-
-                                    divs.forEach(function (div) {
-                                        document.body.removeChild(div);
-                                    });
-
-                                    runGame.lives = 3; // Restoring
-                                    startLevel(0);
-                                }
-                            });
-                        } else if (n < plans.length - 1) {
-                            runGame.lives += 1; // Reward for finishing level
-                            n += 1;
-
-                            soundEngine.soundPlay('nextLevel');
-
-                            console.log('Level: #' + n + ', lives: ' + runGame.lives);
-
-                            startLevel(n);
-                        } else {
-                            console.log('You win!');
-                        }
+                        startLevel(n);
+                    } else {
+                        console.log('You win!');
                     }
-                );
+                });
             }
 
             startLevel(0);

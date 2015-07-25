@@ -33,3 +33,5 @@ The Game is done as a example project of [Eloquent JavaScript](http://eloquentja
 because it can be built without too much code. It looks like this:
 
 ![Platformer](http://eloquentjavascript.net/img/darkblue.png)
+
+I think that old school players will enjoy sounds from Super Mario :)

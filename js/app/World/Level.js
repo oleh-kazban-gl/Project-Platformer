@@ -20,6 +20,7 @@ define(function (require) {
         this.grid = [];
         this.actors = [];
         this.coins = 0;
+        this.levelId = null;
 
         for (var y = 0; y < this.height; y++) {
             var line = plan[y], gridLine = [];

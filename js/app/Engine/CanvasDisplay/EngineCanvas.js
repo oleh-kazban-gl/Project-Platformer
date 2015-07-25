@@ -9,6 +9,7 @@ define(function (require) {
 
     var runGame = require('../../Helpers/runGame');
     var Level = require('../../World/Level');
+    var GAME_LEVELS = require('../../Levels/Levels');
 
     var scale = 20;
 
@@ -34,8 +35,8 @@ define(function (require) {
 
     function CanvasDisplay(parent, level) {
         this.canvas = document.createElement('canvas');
-        this.canvas.width = Math.min(window.innerWidth, level.width * scale);
-        this.canvas.height = Math.min(window.innerHeight, level.height * scale);
+        this.canvas.width = Math.min(640, level.width * scale);
+        this.canvas.height = Math.min(480, level.height * scale);
         parent.appendChild(this.canvas);
         this.context = this.canvas.getContext('2d');
 
@@ -165,22 +166,29 @@ define(function (require) {
     CanvasDisplay.prototype.drawStats = function () {
         var lives = runGame.lives;
         var coins = runGame.level.coins;
+        var levelId = runGame.level.levelId;
+
         this.context.font = ('16px Georgia');
         this.context.fillStyle = '#fff';
 
-        var x = 20;
-        var y = 20;
-        var tileX = 52;
+        if (levelId != 0) {
+            var x = 20;
+            var y = 20;
+            var tileX = 52;
 
-        for (var count = 0; count < lives; x += 15) {
-            this.context.drawImage(otherSprites, tileX, 0, 12, 12, x, y, 12, 12);
-            count++;
+            for (var count = 0; count < lives; x += 15) {
+                this.context.drawImage(otherSprites, tileX, 0, 12, 12, x, y, 12, 12);
+                count++;
+            }
+
+            y += 20, x = 20;
+
+            this.context.drawImage(otherSprites, 40, 0, 12, 12, x, y, 12, 12);
+            this.context.fillText(' x ' + coins + ' remains', 35, 50);
+        } else {
+            this.context.fillText('Press \'SPACE\' button to start the game', 180, 390);
         }
 
-        y +=20, x = 20;
-
-        this.context.drawImage(otherSprites, 40, 0, 12, 12, x, y, 12, 12);
-        this.context.fillText(' x ' + coins + ' remains', 35, 50);
 
 
     };

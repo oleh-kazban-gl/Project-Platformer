@@ -28,6 +28,9 @@ define(function (require) {
         }
 
         soundEngine.soundPlay('pauseSound');
+      } else if (event.keyCode == 32 && level.levelId == 0) {
+        level.status = true;
+        level.finishDelay = 0;
       }
     }
 
