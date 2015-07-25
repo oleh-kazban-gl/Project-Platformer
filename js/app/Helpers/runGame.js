@@ -29,7 +29,7 @@ define(function (require) {
                         console.log('Level: #' + n + ', lives: ' + runGame.lives);
 
                         startLevel(n);
-                    } else if (runGame.lives <= 0) {
+                    } else if (runGame.lives < 0) {
                         soundEngine.soundPlay('gameOver');
                         runGame.lives = 3;
 
