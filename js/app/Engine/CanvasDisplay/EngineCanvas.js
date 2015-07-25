@@ -4,8 +4,11 @@
  * see: https://github.com/olehkazban/Project-Platformer for details
  */
 
-define(function () {
+define(function (require) {
     'use strict';
+
+    var runGame = require('../../Helpers/runGame');
+    var Level = require('../../World/Level');
 
     var scale = 20;
 
@@ -61,6 +64,7 @@ define(function () {
         this.clearDisplay();
         this.drawBackground();
         this.drawActors();
+        this.drawStats();
     };
 
     CanvasDisplay.prototype.updateViewport = function () {
@@ -156,6 +160,29 @@ define(function () {
                 this.context.drawImage(otherSprites, tileX, 0, width, height, x, y, width, height);
             }
         }, this);
+    };
+
+    CanvasDisplay.prototype.drawStats = function () {
+        var lives = runGame.lives;
+        var coins = runGame.level.coins;
+        this.context.font = ('16px Georgia');
+        this.context.fillStyle = '#fff';
+
+        var x = 20;
+        var y = 20;
+        var tileX = 52;
+
+        for (var count = 0; count < lives; x += 15) {
+            this.context.drawImage(otherSprites, tileX, 0, 12, 12, x, y, 12, 12);
+            count++;
+        }
+
+        y +=20, x = 20;
+
+        this.context.drawImage(otherSprites, 40, 0, 12, 12, x, y, 12, 12);
+        this.context.fillText(' x ' + coins + ' remains', 35, 50);
+
+
     };
 
     return CanvasDisplay;

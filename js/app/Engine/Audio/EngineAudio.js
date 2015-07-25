@@ -11,6 +11,7 @@ define(function () {
             gameOver: 'sounds/smb_gameover.wav',
             jump: 'sounds/smb_jump-small.wav',
             death: 'sounds/smb_mariodie.wav',
+            nextLevel: 'sounds/smb_pipe.wav',
             powerUp: 'sounds/smb_powerup.wav',
             coin: 'sounds/smb_coin.wav'
         },

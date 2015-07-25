@@ -4,13 +4,13 @@
  * see: https://github.com/olehkazban/Project-Platformer for details
  */
 
-define(function(require){
-  'use strict';
+define(function (require) {
+    'use strict';
 
-  var runGame = require('./Helpers/runGame');
-  var GAME_LEVELS = require('./Levels/Levels');
-  var DOMDisplay = require('./Engine/DOMDisplay/EngineDOM');
-  var CanvasDisplay = require('./Engine/CanvasDisplay/EngineCanvas');
+    var runGame = require('./Helpers/runGame');
+    var GAME_LEVELS = require('./Levels/Levels');
+    var DOMDisplay = require('./Engine/DOMDisplay/EngineDOM');
+    var CanvasDisplay = require('./Engine/CanvasDisplay/EngineCanvas');
 
-  return runGame(GAME_LEVELS, CanvasDisplay);
+    return runGame.run(GAME_LEVELS, CanvasDisplay);
 });
