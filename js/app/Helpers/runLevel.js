@@ -10,6 +10,7 @@ define(function (require) {
   var runAnimation = require('./runAnimation');
   var trackKeys = require('./trackKeys');
   var arrowCodes = require('../World/keys');
+  var soundEngine = require('../Engine/Audio/EngineAudio');
 
   function runLevel(level, Display, andThen) {
     var display = new Display(document.body, level);
@@ -25,6 +26,8 @@ define(function (require) {
         } else if (running == 'yes') {
           running = 'pausing';
         }
+
+        soundEngine.soundPlay('pauseSound');
       }
     }
 

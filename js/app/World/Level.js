@@ -12,6 +12,8 @@ define(function(require){
 
   var maxStep = 0.05;
 
+  var soundEngine = require('../Engine/Audio/EngineAudio');
+
   function Level(plan) {
     this.width = plan[0].length;
     this.height = plan.length;
@@ -103,9 +105,13 @@ define(function(require){
 
   Level.prototype.playerTouched = function (type, actor) {
     if (type == 'lava' && this.status == null) {
+      soundEngine.soundPlay('death');
+
       this.status = 'lost';
       this.finishDelay = 1;
     } else if (type == 'coin') {
+      soundEngine.soundPlay('coin');
+
       this.actors = this.actors.filter(function (other) {
         return other != actor;
       });

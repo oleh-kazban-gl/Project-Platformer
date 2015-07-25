@@ -9,6 +9,8 @@ define(function (require) {
 
   var Vector = require('../World/Vector');
 
+  var soundEngine = require('../Engine/Audio/EngineAudio');
+
   var gravity = 30;
   var jumpSpeed = 17;
   var playerXSpeed = 7;
@@ -51,6 +53,8 @@ define(function (require) {
       level.playerTouched(obstacle);
 
       if (keys.up && this.speed.y > 0) {
+        soundEngine.soundPlay('jump');
+
         this.speed.y = -jumpSpeed;
       } else {
         this.speed.y = 0;

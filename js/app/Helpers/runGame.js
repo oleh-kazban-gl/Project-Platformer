@@ -9,8 +9,10 @@ define(function(require){
 
   var runLevel = require('./runLevel');
   var Level = require('../World/Level');
+  var soundEngine = require('../Engine/Audio/EngineAudio');
 
   function runGame(plans, Display) {
+    soundEngine.soundInit();
     var lives = 3;
 
     function startLevel(n) {
@@ -21,6 +23,8 @@ define(function(require){
 
             startLevel(n);
           } else if (lives <= 0) {
+            soundEngine.soundPlay('gameOver');
+
             console.log('GAME OVER: You spent all your lives, you loose!');
             console.log('Press SPACE to restart');
 
@@ -65,6 +69,8 @@ define(function(require){
             lives += 1; // Reward for finishing level
             n += 1;
             console.log('Level: #' + n + ', lives: ' + lives);
+
+            soundEngine.soundPlay('powerUp');
 
             startLevel(n);
           } else {
