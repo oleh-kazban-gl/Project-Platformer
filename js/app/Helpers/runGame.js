@@ -25,10 +25,18 @@ define(function (require) {
 
                 runLevel(level, Display, function (status) {
                     if (status === 'lost' && runGame.lives > 0) {
-                        runGame.lives -= 1; // Player died, for respawn spent 1 life
-                        console.log('Level: #' + n + ', lives: ' + runGame.lives);
+                      console.log('Level: ' + n);
 
-                        startLevel(n);
+                        // If player contrives to die at zero level, restoring
+                        if (n === 0) {
+                          startLevel(0);
+                        } else {
+                          runGame.lives -= 1; // Player died, for respawn spent 1 life
+                          console.log('Level: #' + n + ', lives: ' + runGame.lives);
+
+                          startLevel(n);
+                        }
+
                     } else if (runGame.lives < 0) {
                         soundEngine.soundPlay('gameOver');
                         runGame.lives = 3;
