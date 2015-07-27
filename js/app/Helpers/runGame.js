@@ -37,7 +37,7 @@ define(function (require) {
                           startLevel(n);
                         }
 
-                    } else if (runGame.lives < 0) {
+                    } else if (status === 'lost' && runGame.lives <= 0) {
                         soundEngine.soundPlay('gameOver');
                         runGame.lives = 3;
 
