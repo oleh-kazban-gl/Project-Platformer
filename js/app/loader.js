@@ -13,6 +13,4 @@ define(function (require) {
     var CanvasDisplay = require('./Engine/CanvasDisplay/EngineCanvas');
 
     return runGame.run(GAME_LEVELS, CanvasDisplay);
-    //return runGame.run(GAME_LEVELS, CanvasDisplay, 0);
-    //return runGame.run(GAME_LEVELS, 0, CanvasDisplay);
 });
