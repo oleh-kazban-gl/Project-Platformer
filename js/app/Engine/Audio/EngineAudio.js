@@ -36,7 +36,8 @@ define(function () {
             var playSound = document.getElementById(sound);
 
             if (playSound.play()) {
-                playSound.stop(sound)
+                playSound.pause();
+                playSound.currentTime = 0;
             }
 
             playSound.play();
@@ -46,4 +47,3 @@ define(function () {
 
     return soundEngine;
 });
-
